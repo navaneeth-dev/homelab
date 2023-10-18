@@ -1,0 +1,8 @@
+---
+  - name: apt update
+    hosts: monitor
+    tasks:
+      - name: ensure neovim is installed
+        apt:
+          name: neovim
+          state: latest
