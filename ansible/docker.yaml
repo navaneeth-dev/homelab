@@ -1,0 +1,43 @@
+---
+- name: Install docker
+  hosts: default
+  remote_user: root
+
+  tasks:
+    - name: Update all packages to their latest version
+      apt:
+        name: "*"
+        state: latest
+
+    - name: Update and Install Dependencies From APT
+      apt:
+        update_cache: yes
+        pkg:
+        - ca-certificates
+        - curl
+        - gnupg
+
+    - name: Upgrade System
+      apt:
+        upgrade: dist
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Update apt and install docker-ce
+      apt:
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: latest
+        update_cache: true
