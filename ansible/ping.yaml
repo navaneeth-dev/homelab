@@ -1,0 +1,8 @@
+---
+- name: Ping Test
+  hosts: default
+  remote_user: root
+
+  tasks:
+  - name: Ping
+    ansible.builtin.ping:
