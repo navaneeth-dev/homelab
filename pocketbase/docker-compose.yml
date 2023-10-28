@@ -10,11 +10,15 @@ services:
       - PUID=0
       - PGID=0
       - TZ=Asia/Kolkata
-      - URL=c-backend.rizexor.me
-      - VALIDATION=http
+      - URL=pb.rizexor.me
+      - VALIDATION=dns
+      - DNSPLUGIN=cloudflare
     volumes:
       - ./config:/config
     ports:
       - 443:443
       - 80:80
     restart: unless-stopped
+  cmrl-web3-backend:
+    image: rizexor/cmrl-web3-backend:main
+    container_name: cmrl-web3-backend
