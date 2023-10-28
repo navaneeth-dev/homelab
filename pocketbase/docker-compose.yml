@@ -9,6 +9,10 @@ services:
       - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./config/traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - ./config/acme.json:/acme.json
   cmrl-web3-backend:
     image: rizexor/cmrl-web3-backend:main
     container_name: cmrl-web3-backend
+    labels:
+      - traefik.http.routers.my-container.rule=Host(`cmrl-web3-backend.pb.rizexor.me`)
