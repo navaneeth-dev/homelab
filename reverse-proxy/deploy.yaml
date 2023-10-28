@@ -1,0 +1,6 @@
+---
+- name: Deploy SWAG Reverse Proxy
+  hosts: proxy
+
+  tasks:
+    - name: 

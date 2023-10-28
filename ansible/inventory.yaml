@@ -1,0 +1,4 @@
+proxy:
+  hosts:
+    proxy.lan:
+      ansible_user: rize

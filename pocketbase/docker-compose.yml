@@ -1,5 +1,5 @@
 ---
-version: "3.8"
+version: '3'
 services:
   swag:
     image: lscr.io/linuxserver/swag:latest
@@ -7,12 +7,11 @@ services:
     cap_add:
       - NET_ADMIN
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - TZ=Asia/Kolkata
-      - URL=home.rizexor.me
-      - VALIDATION=dns
-      - DNSPLUGIN=cloudflare
+      - URL=c-backend.rizexor.me
+      - VALIDATION=http
     volumes:
       - ./config:/config
     ports:
