@@ -1,24 +1,14 @@
 ---
 version: '3'
 services:
-  swag:
-    image: lscr.io/linuxserver/swag:latest
-    container_name: swag
-    cap_add:
-      - NET_ADMIN
-    environment:
-      - PUID=0
-      - PGID=0
-      - TZ=Asia/Kolkata
-      - URL=pb.rizexor.me
-      - VALIDATION=dns
-      - DNSPLUGIN=cloudflare
-    volumes:
-      - ./config:/config
+  reverse-proxy:
+    image: traefik:v2.10
+    command: --api.insecure=true --providers.docker
     ports:
-      - 443:443
-      - 80:80
-    restart: unless-stopped
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
   cmrl-web3-backend:
     image: rizexor/cmrl-web3-backend:main
     container_name: cmrl-web3-backend
