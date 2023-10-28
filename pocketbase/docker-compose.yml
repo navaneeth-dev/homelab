@@ -4,7 +4,6 @@ services:
   reverse-proxy:
     image: traefik:v2.10
     container_name: reverse-proxy
-    command: --api.insecure=true --providers.docker
     ports:
       - "80:80"
       - "8080:8080"

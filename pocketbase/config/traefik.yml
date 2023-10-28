@@ -1,0 +1,19 @@
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+
+api:
+  dashboard: true
+  insecure: true
+  debug: false
+
+certificatesResolvers:
+  cloudflare:
+    acme:
+      email: "certs@rize.anonaddy.com"
+      storage: acme.json
+      dnsChallenge:
+        provider: cloudflare
+        resolvers:
+          - "1.1.1.1:53"
+          - "8.8.8.8:53"
