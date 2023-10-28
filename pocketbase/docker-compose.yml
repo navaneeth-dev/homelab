@@ -9,8 +9,8 @@ services:
       - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${PWD}/config/traefik.yml:/etc/traefik/traefik.yml:ro
-      - ${PWD}/config/acme.json:/acme.json
+      - ./config/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./config/acme.json:/acme.json
   cmrl-web3-backend:
     image: rizexor/cmrl-web3-backend:main
     container_name: cmrl-web3-backend
