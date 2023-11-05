@@ -16,4 +16,4 @@ ports:
 tlsStore:
   default:
     defaultCertificate:
-      secretName: rizexor-me-staging-tls
+      secretName: rizexor-me-tls
