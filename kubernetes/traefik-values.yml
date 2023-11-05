@@ -1,0 +1,28 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    globalArguments:
+    - "--global.checknewversion"
+    - "--global.sendanonymoususage"
+
+    additionalArguments:
+    - "--serverstransport.insecureskipverify=true"
+
+    ports:
+      web:
+        redirectTo: websecure
+      websecure:
+        tls:
+          enabled: true
+    
+    extraVolumeMounts:
+    - name: ssl
+      mountPath: /ssl
+    extraVolumes:
+      - name: ssl
+        secret:
+          secretName: rizexor-me-staging-tls
