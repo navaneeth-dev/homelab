@@ -2,3 +2,8 @@ proxy:
   hosts:
     proxy.lan:
       ansible_user: rize
+
+k3s:
+  hosts:
+    k3s-1.lan:
+      ansible_user: debian
