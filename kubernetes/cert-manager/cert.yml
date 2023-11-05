@@ -2,7 +2,6 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: k3s-rizexor-me
-  namespace: default
 spec:
   secretName: rizexor-me-staging-tls
   dnsNames:
@@ -11,4 +10,4 @@ spec:
   # Issuer references are always required.
   issuerRef:
     name: letsencrypt-staging
-    kind: Issuer
+    kind: ClusterIssuer
