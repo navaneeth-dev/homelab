@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: k3s-rizexor-me
+spec:
+  secretName: rizexor-me-tls
+  dnsNames:
+    - "k3s.rizexor.me"
+    - "*.k3s.rizexor.me"
+  # Issuer references are always required.
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
