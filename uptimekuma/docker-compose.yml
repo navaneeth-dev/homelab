@@ -1,0 +1,26 @@
+version: '3'
+networks:
+  default:  
+    name: 'proxy_network'
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    restart: unless-stopped
+    volumes:  
+      - /srv/uptime:/app/data
+    labels:   
+      caddy: status.rizexor.me
+      caddy.reverse_proxy: "* {{upstreams 3001}}"
+  caddy:
+    image: "lucaslorentz/caddy-docker-proxy:ci-alpine"
+    container_name: caddy
+    ports:    
+      - "80:80" 
+      - "443:443"
+    volumes:  
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /srv/caddy/:/data
+    restart: unless-stopped
+    environment:
+      - CADDY_INGRESS_NETWORKS=proxy_network
