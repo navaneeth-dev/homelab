@@ -40,7 +40,7 @@ metadata:
   namespace: default
 spec:
   rules:
-    - host: test.pb.rizexor.me
+    - host: cmrl.pb.rizexor.me
       http:
         paths:
           - backend:
@@ -52,4 +52,4 @@ spec:
             pathType: Prefix
   tls:
     - hosts:
-        - test.pb.rizexor.me
+        - cmrl.pb.rizexor.me
