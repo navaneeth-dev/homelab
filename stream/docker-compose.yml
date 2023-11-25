@@ -9,7 +9,7 @@ services:
       - PUID=1000
       - PGID=1000
       - UMASK=002
-      - TZ=Etc/UTC
+      - TZ=Asia/Kolkata
     volumes:
       - ./config:/config
       - ./data:/data
