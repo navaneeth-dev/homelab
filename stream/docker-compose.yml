@@ -75,5 +75,6 @@ services:
       - PGID=1000
       - TZ=Asia/Kolkata
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - /docker/appdata/jellyfin:/config
       - /data/media:/data/media
