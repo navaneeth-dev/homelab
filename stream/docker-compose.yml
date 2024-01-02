@@ -65,6 +65,14 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /docker/appdata/sabnzbd:/config
       - /data/usenet:/data/usenet:rw
+  recyclarr:
+    image: ghcr.io/recyclarr/recyclarr
+    container_name: recyclarr
+    user: 1000:1000
+    volumes:
+      - /docker/appdata/recyclarr:/config
+    environment:
+      - TZ=Asia/Kolkata
   jellyfin:
     container_name: jellyfin
     image: ghcr.io/hotio/jellyfin:latest
@@ -79,3 +87,11 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /docker/appdata/jellyfin:/config
       - /data/media:/data/media
+  speedtest:
+    container_name: speedtest
+    image: ghcr.io/librespeed/speedtest:latest
+    restart: unless-stopped
+    environment:
+      MODE: standalone
+    ports:
+      - 60000:80
