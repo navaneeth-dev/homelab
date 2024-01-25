@@ -123,15 +123,22 @@ services:
       MODE: standalone
     ports:
       - 60000:80
-  caddy:
-    container_name: caddy
-    image: ghcr.io/hotio/caddy
-    ports:
-      - "80:8080"
-      - "443:8443"
+  swag:
+    image: lscr.io/linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kolkata
+      - URL=s.rizexor.me
+      - SUBDOMAINS=wildcard
+      - VALIDATION=dns
+      - DNSPLUGIN=cloudflare
     volumes:
-      - /docker/appdata/caddy:/config
+      - /docker/appdata/swag:/config
+    ports:
+      - 443:443
+      - 80:80
+    restart: unless-stopped
