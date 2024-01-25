@@ -115,8 +115,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /docker/appdata/jellyseerr:/config
-  speedtest:
-    container_name: speedtest
+  librespeed:
+    container_name: librespeed
     image: ghcr.io/librespeed/speedtest:latest
     restart: unless-stopped
     environment:
