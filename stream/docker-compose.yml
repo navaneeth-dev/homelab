@@ -111,7 +111,6 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - UMASK=002
       - TZ=Asia/Kolkata
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -124,3 +123,15 @@ services:
       MODE: standalone
     ports:
       - 60000:80
+  caddy:
+    container_name: caddy
+    image: ghcr.io/hotio/caddy
+    ports:
+      - "80:8080"
+      - "443:8443"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kolkata
+    volumes:
+      - /docker/appdata/caddy:/config
