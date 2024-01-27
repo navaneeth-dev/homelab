@@ -84,6 +84,7 @@ services:
   prowlarr:
     container_name: prowlarr
     image: ghcr.io/hotio/prowlarr
+    restart: unless-stopped
     ports:
       - "9696:9696"
     environment:
@@ -94,8 +95,9 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /docker/appdata/prowlarr:/config
   recyclarr:
-    image: ghcr.io/recyclarr/recyclarr
     container_name: recyclarr
+    image: ghcr.io/recyclarr/recyclarr
+    restart: unless-stopped
     user: 1000:1000
     volumes:
       - /docker/appdata/recyclarr:/config
@@ -118,6 +120,7 @@ services:
   jellyseerr:
     container_name: jellyseerr
     image: ghcr.io/hotio/jellyseerr
+    restart: unless-stopped
     ports:
       - "5055:5055"
     environment:
