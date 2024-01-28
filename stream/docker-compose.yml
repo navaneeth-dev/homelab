@@ -140,6 +140,7 @@ services:
       - 60000:80
   swag:
     image: lscr.io/linuxserver/swag
+    restart: unless-stopped
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -156,4 +157,3 @@ services:
     ports:
       - 443:443
       - 80:80
-    restart: unless-stopped
