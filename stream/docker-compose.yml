@@ -138,22 +138,12 @@ services:
       MODE: standalone
     ports:
       - 60000:80
-  swag:
-    image: lscr.io/linuxserver/swag
-    restart: unless-stopped
-    container_name: swag
-    cap_add:
-      - NET_ADMIN
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Kolkata
-      - URL=s.rizexor.me
-      - SUBDOMAINS=wildcard
-      - VALIDATION=dns
-      - DNSPLUGIN=cloudflare
-    volumes:
-      - /docker/appdata/swag:/config
+  traefik:
+    container_name: traefik
+    image: traefik:v2.10
+    command: --providers.docker
     ports:
-      - 443:443
-      - 80:80
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
