@@ -155,8 +155,8 @@ services:
     environment:
       RUN_ON_STARTUP: "true"
       BACKUP_CRON: "* 23 * * *"
-      RESTIC_REPOSITORY: ""
-      RESTIC_PASSWORD: ""
+      RESTIC_REPOSITORY: {{ RESTIC_REPOSITORY }}
+      RESTIC_PASSWORD: {{ RESTIC_PASSWORD }}
       RESTIC_BACKUP_SOURCES: /mnt/volumes
       RESTIC_BACKUP_ARGS: >-
         --tag docker-volumes
@@ -167,8 +167,8 @@ services:
         --keep-daily 7
         --keep-weekly 5
         --keep-monthly 12
-      AWS_ACCESS_KEY_ID: ""
-      AWS_SECRET_ACCESS_KEY: ""
+      AWS_ACCESS_KEY_ID: {{ AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: {{ AWS_SECRET_ACCESS_KEY }}
       TZ: Asia/Kolkata
     volumes:
       - /docker/appdata:/mnt/volumes:ro
