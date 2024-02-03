@@ -1,4 +1,4 @@
 ---
 - hosts: stream
   roles:
-    - general
+    - base

@@ -1,7 +1,7 @@
 ---
 - name: Create install directory
   file:
-    path: "{{ install_directory }}/general"
+    path: "{{ install_directory }}/base"
     state: directory
     owner: debian
     group: debian
@@ -10,13 +10,13 @@
 - name: Copy docker-compose file to destination
   template:
     src: docker-compose.yml
-    dest: "{{ install_directory }}/general/docker-compose.yml"
+    dest: "{{ install_directory }}/base/docker-compose.yml"
     owner: debian
     group: debian
-    validate: docker-compose -f %s config
+    validate: docker compose -f %s config
   become: true
 
-- name: Run `docker-compose up`
+- name: Run docker-compose up
   community.docker.docker_compose_v2:
-      project_src: "{{ install_directory }}/general"
+    project_src: "{{ install_directory }}/base"
   register: output
