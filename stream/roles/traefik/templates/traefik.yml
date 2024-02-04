@@ -5,7 +5,8 @@
 #   insecure: false
 
 providers:
-  docker: {}
+  docker:
+    exposedByDefault: false
 
 # log:
 #   level: DEBUG
