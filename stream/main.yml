@@ -2,4 +2,4 @@
 - hosts: stream
   roles:
     - traefik
-    # - base
+    - base

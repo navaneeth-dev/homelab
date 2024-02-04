@@ -18,7 +18,7 @@ services:
       - /data:/data
     labels:
       - traefik.http.routers.radarr.rule=Host(`radarr.s.rizexor.me`)
-      - traefik.http.routers.radarr.entrypoints=web
+      - traefik.http.routers.radarr.entrypoints=websecure
   sonarr:
     container_name: sonarr
     image: ghcr.io/hotio/sonarr:latest

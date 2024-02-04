@@ -1,14 +1,14 @@
 ---
-api:
-  dashboard: true
-  debug: true
-  insecure: true
+# api:
+#   dashboard: false
+#   debug: false
+#   insecure: false
 
 providers:
   docker: {}
 
-log:
-  level: DEBUG
+# log:
+#   level: DEBUG
 
 entryPoints:
   web:
