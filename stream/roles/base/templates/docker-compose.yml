@@ -138,15 +138,6 @@ services:
       MODE: standalone
     ports:
       - 60000:80
-  traefik:
-    container_name: traefik
-    image: traefik:v2.10
-    command: --providers.docker
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
   backup:
     container_name: backup
     image: mazzolino/restic
@@ -185,3 +176,8 @@ services:
       AWS_ACCESS_KEY_ID: {{ AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: {{ AWS_SECRET_ACCESS_KEY }}
       TZ: {{ timezone }}
+
+networks:
+  default:
+    name: traefik
+    external: true
