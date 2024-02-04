@@ -154,7 +154,7 @@ services:
     restart: unless-stopped
     environment:
       RUN_ON_STARTUP: "true"
-      BACKUP_CRON: "* * 23 * * *"
+      BACKUP_CRON: "0 0 23 * * *"
       RESTIC_REPOSITORY: {{ RESTIC_REPOSITORY }}
       RESTIC_PASSWORD: {{ RESTIC_PASSWORD }}
       RESTIC_BACKUP_SOURCES: /mnt/volumes
@@ -173,3 +173,15 @@ services:
     volumes:
       - /mnt/restore:/mnt/restore
       - /docker/appdata:/mnt/volumes:ro
+  prune:
+    image: mazzolino/restic
+    hostname: docker
+    restart: unless-stopped
+    environment:
+      RUN_ON_STARTUP: "true"
+      PRUNE_CRON: "0 0 4 * * *"
+      RESTIC_REPOSITORY: {{ RESTIC_REPOSITORY }}
+      RESTIC_PASSWORD: {{ RESTIC_PASSWORD }}
+      AWS_ACCESS_KEY_ID: {{ AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: {{ AWS_SECRET_ACCESS_KEY }}
+      TZ: {{ timezone }}
