@@ -169,6 +169,6 @@ services:
         --keep-monthly 12
       AWS_ACCESS_KEY_ID: {{ AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: {{ AWS_SECRET_ACCESS_KEY }}
-      TZ: Asia/Kolkata
+      TZ: {{ timezone }}
     volumes:
       - /docker/appdata:/mnt/volumes:ro
