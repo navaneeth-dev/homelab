@@ -7,6 +7,14 @@
     group: debian
   become: true
 
+- name: Copy traefik.yml file to destination
+  template:
+    src: traefik.yml
+    dest: "{{ install_directory }}/{{ role_name }}/traefik.yml"
+    owner: debian
+    group: debian
+  become: true
+
 - name: Copy docker-compose file to destination
   template:
     src: docker-compose.yml
