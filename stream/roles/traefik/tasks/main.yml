@@ -7,10 +7,25 @@
     group: debian
   become: true
 
+- name: Create config directory
+  file:
+    path: "{{ data_dir }}/{{ role_name }}"
+    state: directory
+    owner: debian
+    group: debian
+  become: true
+
+- name: Create certificate directory
+  file:
+    path: "{{ data_dir }}/{{ role_name }}/letsencrypt"
+    state: directory
+    owner: "debian"
+  become: true
+
 - name: Copy traefik.yml file to destination
   template:
     src: traefik.yml
-    dest: "{{ install_directory }}/{{ role_name }}/traefik.yml"
+    dest: "{{ data_dir }}/{{ role_name }}/{{ role_name }}.yml"
     owner: debian
     group: debian
   become: true

@@ -1,5 +1,7 @@
 ---
 api:
+  dashboard: true
+  debug: true
   insecure: true
 
 providers:
@@ -18,8 +20,13 @@ entryPoints:
           scheme: https
   websecure:
     address: ":443"
-    tls:
-      certResolver: cloudflare-production
+    http:
+      tls:
+        certResolver: cloudflare-production
+        domains:
+          - main: s.rizexor.me
+            sans:
+              - "*.s.rizexor.me"
 
 certificatesResolvers:
   cloudflare-production:
@@ -28,6 +35,6 @@ certificatesResolvers:
       storage: "/letsencrypt/acme.json"
       dnsChallenge:
         provider: cloudflare
-      resolvers:
-        - "1.1.1.1:53"
-        - "1.0.0.1:53"
+        resolvers:
+          - "1.1.1.1:53"
+          - "1.0.0.1:53"

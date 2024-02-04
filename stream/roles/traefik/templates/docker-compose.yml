@@ -15,11 +15,12 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "8080:8080"
     environment:
       - "CF_API_EMAIL={{ CF_API_EMAIL }}"
       - "CF_API_KEY={{ CF_API_KEY }}"
     volumes:
-      - "{{ data_dir }}/letsencrypt:/letsencrypt"
-      - "{{ data_dir }}/traefik.yml:/etc/traefik.yml:ro"
+      - "{{ data_dir }}/traefik/letsencrypt:/letsencrypt"
+      - "{{ data_dir }}/traefik/traefik.yml:/etc/traefik/traefik.yml:ro"
       - /var/run/docker.sock:/var/run/docker.sock
 
