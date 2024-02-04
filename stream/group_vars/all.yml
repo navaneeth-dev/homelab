@@ -1,2 +1,3 @@
 timezone: Asia/Kolkata
 install_directory: /srv
+data_dir: /docker/appdata
