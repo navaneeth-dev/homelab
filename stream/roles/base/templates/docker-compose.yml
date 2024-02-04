@@ -171,4 +171,5 @@ services:
       AWS_SECRET_ACCESS_KEY: {{ AWS_SECRET_ACCESS_KEY }}
       TZ: {{ timezone }}
     volumes:
+      - /mnt/restore:/mnt/restore
       - /docker/appdata:/mnt/volumes:ro
