@@ -9,6 +9,7 @@ services:
   traefik:
     container_name: traefik
     image: traefik:v2.10
+    restart: unless-stopped
     networks:
       - traefik
     ports:
