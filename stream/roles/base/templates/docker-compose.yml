@@ -154,7 +154,7 @@ services:
     restart: unless-stopped
     environment:
       RUN_ON_STARTUP: "true"
-      BACKUP_CRON: "* 23 * * *"
+      BACKUP_CRON: "* * 23 * * *"
       RESTIC_REPOSITORY: {{ RESTIC_REPOSITORY }}
       RESTIC_PASSWORD: {{ RESTIC_PASSWORD }}
       RESTIC_BACKUP_SOURCES: /mnt/volumes
