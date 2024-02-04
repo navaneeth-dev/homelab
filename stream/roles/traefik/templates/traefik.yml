@@ -5,6 +5,9 @@ api:
 providers:
   docker: {}
 
+log:
+  level: DEBUG
+
 entryPoints:
   web:
     address: ":80"
@@ -16,10 +19,10 @@ entryPoints:
   websecure:
     address: ":443"
     tls:
-      certResolver: cloudflare
+      certResolver: cloudflare-production
 
 certificatesResolvers:
-  cloudflare:
+  cloudflare-production:
     acme:
       email: "{{ email }}"
       storage: "/letsencrypt/acme.json"
