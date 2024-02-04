@@ -17,6 +17,7 @@ services:
       - /docker/appdata/radarr:/config
       - /data:/data
     labels:
+      - traefik.enable=true
       - traefik.http.routers.radarr.rule=Host(`radarr.s.rizexor.me`)
       - traefik.http.routers.radarr.entrypoints=websecure
   sonarr:
@@ -35,22 +36,10 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /docker/appdata/sonarr:/config
       - /data:/data
-  sonarr_anime:
-    container_name: sonarr_anime
-    image: ghcr.io/hotio/sonarr:latest
-    restart: unless-stopped
-    logging:
-      driver: json-file
-    ports:
-      - 6969:8989
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Kolkata
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /docker/appdata/sonarr_anime:/config
-      - /data:/data
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.sonarr.rule=Host(`sonarr.s.rizexor.me`)
+      - traefik.http.routers.sonarr.entrypoints=websecure
   bazarr:
     container_name: bazarr
     image: ghcr.io/hotio/bazarr:latest
@@ -67,6 +56,10 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /docker/appdata/bazarr:/config
       - /data/media:/data/media
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.bazarr.rule=Host(`bazarr.s.rizexor.me`)
+      - traefik.http.routers.bazarr.entrypoints=websecure
   sabnzbd:
     container_name: sabnzbd
     image: ghcr.io/hotio/sabnzbd:latest
@@ -84,6 +77,10 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /docker/appdata/sabnzbd:/config
       - /data/usenet:/data/usenet:rw
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.sabnzbd.rule=Host(`sabnzbd.s.rizexor.me`)
+      - traefik.http.routers.sabnzbd.entrypoints=websecure
   prowlarr:
     container_name: prowlarr
     image: ghcr.io/hotio/prowlarr
@@ -97,6 +94,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /docker/appdata/prowlarr:/config
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.prowlarr.rule=Host(`prowlarr.s.rizexor.me`)
+      - traefik.http.routers.prowlarr.entrypoints=websecure
   recyclarr:
     container_name: recyclarr
     image: ghcr.io/recyclarr/recyclarr
@@ -120,6 +121,10 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /docker/appdata/jellyfin:/config
       - /data/media:/data/media
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.jellyfin.rule=Host(`jellyfin.s.rizexor.me`)
+      - traefik.http.routers.jellyfin.entrypoints=websecure
   jellyseerr:
     container_name: jellyseerr
     image: ghcr.io/hotio/jellyseerr
@@ -133,6 +138,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /docker/appdata/jellyseerr:/config
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.jellyseerr.rule=Host(`jellyseerr.s.rizexor.me`)
+      - traefik.http.routers.jellyseerr.entrypoints=websecure
   librespeed:
     container_name: librespeed
     image: ghcr.io/librespeed/speedtest:latest
@@ -141,6 +150,10 @@ services:
       MODE: standalone
     ports:
       - 60000:80
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.librespeed.rule=Host(`librespeed.s.rizexor.me`)
+      - traefik.http.routers.librespeed.entrypoints=websecure
   backup:
     container_name: backup
     image: mazzolino/restic
