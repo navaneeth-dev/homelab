@@ -1,5 +1,8 @@
 ---
-- hosts: stream
+- name: Selfhosted Stream Ansible Playbook
+  hosts: stream
+  become: yes
   roles:
+    - geerlingguy.docker
     - traefik
     - base
