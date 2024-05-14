@@ -1,3 +1,6 @@
+---
+roles:
+  - src: geerlingguy.docker
 collections:
   - name: community.docker
     version: ">=3.7.0"
