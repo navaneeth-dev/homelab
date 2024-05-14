@@ -25,9 +25,9 @@ entryPoints:
       tls:
         certResolver: cloudflare-production
         domains:
-          - main: s.rizexor.me
+          - main: s.{{ domain }}
             sans:
-              - "*.s.rizexor.me"
+              - "*.s.{{ domain }}
 
 certificatesResolvers:
   cloudflare-production:
