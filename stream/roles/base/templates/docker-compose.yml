@@ -18,7 +18,7 @@ services:
       - /data:/data
     labels:
       - traefik.enable=true
-      - traefik.http.routers.radarr.rule=Host(`radarr.s.rizexor.me`)
+      - traefik.http.routers.radarr.rule=Host(`radarr.s.{{ domain }}`)
       - traefik.http.routers.radarr.entrypoints=websecure
   sonarr:
     container_name: sonarr
@@ -38,7 +38,7 @@ services:
       - /data:/data
     labels:
       - traefik.enable=true
-      - traefik.http.routers.sonarr.rule=Host(`sonarr.s.rizexor.me`)
+      - traefik.http.routers.sonarr.rule=Host(`sonarr.s.{{ domain }}`)
       - traefik.http.routers.sonarr.entrypoints=websecure
   bazarr:
     container_name: bazarr
@@ -58,7 +58,7 @@ services:
       - /data/media:/data/media
     labels:
       - traefik.enable=true
-      - traefik.http.routers.bazarr.rule=Host(`bazarr.s.rizexor.me`)
+      - traefik.http.routers.bazarr.rule=Host(`bazarr.s.{{ domain }}`)
       - traefik.http.routers.bazarr.entrypoints=websecure
   sabnzbd:
     container_name: sabnzbd
@@ -79,7 +79,7 @@ services:
       - /data/usenet:/data/usenet:rw
     labels:
       - traefik.enable=true
-      - traefik.http.routers.sabnzbd.rule=Host(`sabnzbd.s.rizexor.me`)
+      - traefik.http.routers.sabnzbd.rule=Host(`sabnzbd.s.{{ domain }}`)
       - traefik.http.routers.sabnzbd.entrypoints=websecure
   prowlarr:
     container_name: prowlarr
@@ -96,7 +96,7 @@ services:
       - /docker/appdata/prowlarr:/config
     labels:
       - traefik.enable=true
-      - traefik.http.routers.prowlarr.rule=Host(`prowlarr.s.rizexor.me`)
+      - traefik.http.routers.prowlarr.rule=Host(`prowlarr.s.{{ domain }}`)
       - traefik.http.routers.prowlarr.entrypoints=websecure
   recyclarr:
     container_name: recyclarr
@@ -123,7 +123,7 @@ services:
       - /data/media:/data/media
     labels:
       - traefik.enable=true
-      - traefik.http.routers.jellyfin.rule=Host(`jellyfin.s.rizexor.me`)
+      - traefik.http.routers.jellyfin.rule=Host(`jellyfin.s.{{ domain }}`)
       - traefik.http.routers.jellyfin.entrypoints=websecure
   jellyseerr:
     container_name: jellyseerr
@@ -140,7 +140,7 @@ services:
       - /docker/appdata/jellyseerr:/config
     labels:
       - traefik.enable=true
-      - traefik.http.routers.jellyseerr.rule=Host(`jellyseerr.s.rizexor.me`)
+      - traefik.http.routers.jellyseerr.rule=Host(`jellyseerr.s.{{ domain }}`)
       - traefik.http.routers.jellyseerr.entrypoints=websecure
   librespeed:
     container_name: librespeed
@@ -152,7 +152,7 @@ services:
       - 60000:80
     labels:
       - traefik.enable=true
-      - traefik.http.routers.librespeed.rule=Host(`librespeed.s.rizexor.me`)
+      - traefik.http.routers.librespeed.rule=Host(`librespeed.s.{{ domain }}`)
       - traefik.http.routers.librespeed.entrypoints=websecure
   backup:
     container_name: backup
