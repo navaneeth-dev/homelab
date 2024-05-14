@@ -1,3 +1,7 @@
 timezone: Asia/Kolkata
 install_directory: /srv
 data_dir: /docker/appdata
+
+# Docker
+docker_users:
+  - debian
