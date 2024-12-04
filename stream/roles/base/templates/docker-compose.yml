@@ -1,4 +1,3 @@
-version: "3.2"
 services:
   radarr:
     container_name: radarr
@@ -160,7 +159,7 @@ services:
     hostname: docker
     restart: unless-stopped
     environment:
-      RUN_ON_STARTUP: "true"
+      RUN_ON_STARTUP: "false"
       BACKUP_CRON: "0 0 23 * * *"
       RESTIC_REPOSITORY: {{ RESTIC_REPOSITORY }}
       RESTIC_PASSWORD: {{ RESTIC_PASSWORD }}
@@ -185,7 +184,7 @@ services:
     hostname: docker
     restart: unless-stopped
     environment:
-      RUN_ON_STARTUP: "true"
+      RUN_ON_STARTUP: "false"
       PRUNE_CRON: "0 0 4 * * *"
       RESTIC_REPOSITORY: {{ RESTIC_REPOSITORY }}
       RESTIC_PASSWORD: {{ RESTIC_PASSWORD }}

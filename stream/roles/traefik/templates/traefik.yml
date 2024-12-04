@@ -27,7 +27,7 @@ entryPoints:
         domains:
           - main: s.{{ domain }}
             sans:
-              - "*.s.{{ domain }}
+              - "*.s.{{ domain }}"
 
 certificatesResolvers:
   cloudflare-production:

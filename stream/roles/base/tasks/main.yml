@@ -3,16 +3,16 @@
   file:
     path: "{{ install_directory }}/base"
     state: directory
-    owner: debian
-    group: debian
+    owner: ubuntu
+    group: ubuntu
   become: true
 
 - name: Copy docker-compose file to destination
   template:
     src: docker-compose.yml
     dest: "{{ install_directory }}/base/docker-compose.yml"
-    owner: debian
-    group: debian
+    owner: ubuntu
+    group: ubuntu
     validate: docker compose -f %s config
   become: true
 
