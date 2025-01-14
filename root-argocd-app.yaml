@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/navaneeth-dev/homelab
     targetRevision: HEAD
-    path: homelab
+    path: apps
   destination:
     server: https://kubernetes.default.svc
-    namespace: homelab
+    namespace: apps

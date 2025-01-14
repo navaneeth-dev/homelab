@@ -5,20 +5,24 @@ networks:
     name: traefik
 
 services:
-  traefik:
-    container_name: traefik
-    image: traefik:v2.10
-    restart: unless-stopped
-    networks:
-      - traefik
-    ports:
-      - "80:80"
-      - "443:443"
-    environment:
-      - "CF_API_EMAIL={{ CF_API_EMAIL }}"
-      - "CF_API_KEY={{ CF_API_KEY }}"
-    volumes:
-      - "{{ data_dir }}/traefik/letsencrypt:/letsencrypt"
-      - "{{ data_dir }}/traefik/traefik.yml:/etc/traefik/traefik.yml:ro"
-      - /var/run/docker.sock:/var/run/docker.sock
-
+  swag:
+      image: lscr.io/linuxserver/swag
+      container_name: swag
+      cap_add:
+        - NET_ADMIN
+      environment:
+        - PUID=1000
+        - PGID=1000
+        - "TZ={{ timezone }}"
+        - URL=s.rizexor.com
+        - SUBDOMAINS=wildcard
+        - VALIDATION=dns
+        - DNSPLUGIN=cloudflare
+        - "EMAIL={{ email }}" #optional
+        - STAGING=false #optional
+      volumes:
+        - "{{ data_dir }}/swag:/config"
+      ports:
+        - 443:443
+        - 80:80
+      restart: unless-stopped

@@ -8,8 +8,8 @@ providers:
   docker:
     exposedByDefault: false
 
-# log:
-#   level: DEBUG
+log:
+  level: DEBUG
 
 entryPoints:
   web:
@@ -25,9 +25,9 @@ entryPoints:
       tls:
         certResolver: cloudflare-production
         domains:
-          - main: s.{{ domain }}
+          - main: 's.{{ domain }}'
             sans:
-              - "*.s.{{ domain }}"
+              - '*.s.{{ domain }}'
 
 certificatesResolvers:
   cloudflare-production:
@@ -37,8 +37,7 @@ certificatesResolvers:
       dnsChallenge:
         provider: cloudflare
         resolvers:
-          - "1.1.1.1:53"
-          - "1.0.0.1:53"
+          - "192.168.2.1:53"
   lets-encrypt-staging:
     acme:
       email: "{{ email }}"
@@ -47,5 +46,4 @@ certificatesResolvers:
       dnsChallenge:
         provider: cloudflare
         resolvers:
-          - "1.1.1.1:53"
-          - "1.0.0.1:53"
+          - "192.168.2.1:53"
