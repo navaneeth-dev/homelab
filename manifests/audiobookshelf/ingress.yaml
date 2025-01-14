@@ -5,14 +5,15 @@ metadata:
   name: audiobookshelf
   namespace: homelab
 spec:
+  ingressClassName: nginx
   rules:
     - host: audiobookshelf.rizexor.local
       http:
         paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: audiobookshelf
-                port:
-                  number: 80
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: audiobookshelf
+              port:
+                number: 80
