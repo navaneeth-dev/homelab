@@ -10,7 +10,7 @@ spec:
     repoURL: https://charts.jetstack.io
     targetRevision: v1.16.2
     helm:
-      values: |
+      valuesObject:
         crds:
           enabled: true
   destination:
