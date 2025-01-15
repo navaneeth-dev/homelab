@@ -17,4 +17,3 @@ spec:
               name: arr-stack
               port:
                 number: 80
-                containerPort: 8096
