@@ -1,3 +1,4 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -6,12 +7,41 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/navaneeth-dev/homelab
+    repoURL: https://github.com/navaneeth-dev/homelab.git
     targetRevision: HEAD
-    path: apps
+    path: core
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
   syncPolicy:
     syncOptions:
     - CreateNamespace=true  
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: apps
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: https://github.com/navaneeth-dev/homelab.git
+      revision: HEAD
+      directories:
+      - path: apps/*
+  template:
+    metadata:
+      name: '{{.path.basename}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/navaneeth-dev/homelab.git
+        targetRevision: HEAD
+        path: '{{.path.path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.path.basename}}'
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
