@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arr-stack
+  namespace: homelab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jellyfin
+  template:
+    metadata:
+      labels:
+        app: jellyfin
+    spec:
+      containers:
+        - name: jellyfin
+          image: ghcr.io/hotio/jellyfin:release
+          ports:
+            - containerPort: 8096
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Asia/Kolkata"
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config
+            - name: media-volume
+              mountPath: /data/media
+      volumes:
+        - name: config-volume
+          hostPath:
+            path: /docker/appdata/jellyfin
+        - name: media-volume
+          hostPath:
+            path: /data/media
