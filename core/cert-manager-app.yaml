@@ -19,3 +19,20 @@ spec:
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: infisical-managed-secrets
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: infisical
+
+  target:
+    name: cloudflare-api-token-secret
+
+  data:
+    - secretKey: api-token
+      remoteRef:
+        key: CLOUDFLARE-API-TOKEN-SECRET
