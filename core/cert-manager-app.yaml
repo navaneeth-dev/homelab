@@ -10,9 +10,11 @@ spec:
     repoURL: https://charts.jetstack.io
     targetRevision: v1.16.2
     helm:
-      parameters:
-      - name: "crds.enabled"
-        value: "true"
+      valuesObject:
+        crds:
+          enabled: true
+        dns01RecursiveNameservers: '192.168.2.1:53'
+        dns01RecursiveNameserversOnly: true
   destination:
     server: "https://kubernetes.default.svc"
     namespace: cert-manager
