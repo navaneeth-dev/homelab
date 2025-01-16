@@ -31,7 +31,7 @@ spec:
     name: infisical
 
   target:
-    name: cloudflare-token-key-secret
+    name: cloudflare-api-token-secret
 
   data:
     - secretKey: api-token
