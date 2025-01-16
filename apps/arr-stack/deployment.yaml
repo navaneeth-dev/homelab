@@ -26,14 +26,14 @@ spec:
             - name: TZ
               value: "Asia/Kolkata"
           volumeMounts:
-            - name: config-volume
+            - name: jellyfin-config
               mountPath: /config
-            - name: media-volume
+            - name: jellyfin-data
               mountPath: /data/media
       volumes:
-        - name: config-volume
-          hostPath:
-            path: /docker/appdata/jellyfin
-        - name: media-volume
-          hostPath:
-            path: /data/media
+        - name: jellyfin-config
+          persistentVolumeClaim:
+            claimName: jellyfin-config
+        - name: jellyfin-data
+          persistentVolumeClaim:
+            claimName: jellyfin-data
