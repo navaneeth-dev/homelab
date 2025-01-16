@@ -24,7 +24,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
   name: infisical-managed-secrets
-  namespace: cert-manager
+  namespace: homelab
 spec:
   secretStoreRef:
     kind: ClusterSecretStore
@@ -39,10 +39,10 @@ spec:
         key: CLOUDFLARE-API-KEY-SECRET
 ---
 apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
+kind: Issuer
 metadata:
   name: cloudflare-issuer
-  namespace: cert-manager
+  namespace: homelab
 spec:
   acme:
     email: certs@rize.anonaddy.com
