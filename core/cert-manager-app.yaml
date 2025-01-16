@@ -31,12 +31,12 @@ spec:
     name: infisical
 
   target:
-    name: cloudflare-api-token-secret
+    name: cloudflare-api-key-secret
 
   data:
-    - secretKey: api-token
+    - secretKey: api-key
       remoteRef:
-        key: CLOUDFLARE-API-TOKEN-SECRET
+        key: CLOUDFLARE-API-KEY-SECRET
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
