@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: jellyfin
-          image: ghcr.io/hotio/jellyfin:release
+          image: ghcr.io/hotio/jellyfin:release-10.10.3
           ports:
             - containerPort: 8096
           env:

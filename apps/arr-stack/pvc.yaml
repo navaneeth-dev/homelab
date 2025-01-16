@@ -12,14 +12,16 @@ spec:
       storage: 100Mi
 ---
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: PersistentVolume
 metadata:
   name: jellyfin-data
   namespace: homelab
 spec:
+  capacity:
+    storage: 800Gi
   accessModes:
-    - ReadWriteOnce
-  storageClassName: local-path
-  resources:
-    requests:
-      storage: 1Gi
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: "/srv/nfs4/data"
+    server: "192.168.2.180"
