@@ -31,12 +31,12 @@ spec:
     name: infisical
 
   target:
-    name: cloudflare-api-key-secret
+    name: cloudflare-token-key-secret
 
   data:
-    - secretKey: api-key
+    - secretKey: api-token
       remoteRef:
-        key: CLOUDFLARE_API_KEY_SECRET
+        key: CLOUDFLARE_API_TOKEN_SECRET
 ---
 apiVersion: cert-manager.io/v1
 kind: Issuer
@@ -52,10 +52,9 @@ spec:
     solvers:
     - dns01:
         cloudflare:
-          email: decodestudios.help@gmail.com
-          apiKeySecretRef:
-            name: cloudflare-api-key-secret
-            key: api-key
+          apiTokenSecretRef:
+            name: cloudflare-api-token-secret
+            key: api-token
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
