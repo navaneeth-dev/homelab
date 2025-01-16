@@ -69,4 +69,4 @@ spec:
     - '*.home.rizexor.com'
   issuerRef:
     name: cloudflare-issuer
-    kind: ClusterIssuer
+    kind: Issuer
