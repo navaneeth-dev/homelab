@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: external-secrets
+  name: vault
   namespace: argocd
 spec:
   project: default
   source:
-    chart: external-secrets
-    repoURL: https://charts.external-secrets.io
-    targetRevision: 0.12.1
+    chart: vault
+    repoURL: https://helm.releases.hashicorp.com
+    targetRevision: 0.29.1
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: external-secrets
+    namespace: vault
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
