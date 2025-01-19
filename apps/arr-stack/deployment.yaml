@@ -28,6 +28,8 @@ spec:
           volumeMounts:
             - name: jellyfin-config
               mountPath: /config
+            - name: media
+              mountPath: /media
         - name: radarr
           image: ghcr.io/hotio/radarr:release-5.17.2.9580
           ports:
@@ -39,13 +41,21 @@ spec:
               value: "1000"
             - name: TZ
               value: "Asia/Kolkata"
-          # volumeMounts:
-          #   - name: radarr-config
-          #     mountPath: /config
-          #   - name: arr-stack-data
-          #     mountPath: /data/media
+          volumeMounts:
+            - name: radarr-config
+              mountPath: /config
+            - name: media
+              mountPath: /media
       volumes:
         - name: jellyfin-config
           nfs:
             server: 192.168.2.180
             path: "/srv/nfs4/config/jellyfin"
+        - name: media
+          nfs:
+            server: 192.168.2.180
+            path: "/srv/nfs4/media"
+        - name: radarr-config
+          nfs:
+            server: 192.168.2.180
+            path: "/srv/nfs4/config/radarr"
