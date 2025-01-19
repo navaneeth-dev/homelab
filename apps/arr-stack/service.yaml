@@ -19,6 +19,9 @@ spec:
     - name: prowlarr
       port: 9696
       targetPort: 9696
+    - name: sabnzbd
+      port: 8080
+      targetPort: 8080
   selector:
     app: arr-stack
 
