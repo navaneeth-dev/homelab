@@ -30,10 +30,32 @@ spec:
               mountPath: /config
             - name: jellyfin-data
               mountPath: /data/media
+        - name: radarr
+          image: ghcr.io/hotio/radarr:release-5.17.2.9580
+          ports:
+            - containerPort: 7878
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Asia/Kolkata"
+          volumeMounts:
+            - name: radarr-config
+              mountPath: /config
+            - name: radarr-data
+              mountPath: /data/media
       volumes:
         - name: jellyfin-config
           persistentVolumeClaim:
             claimName: jellyfin-config
         - name: jellyfin-data
+          persistentVolumeClaim:
+            claimName: jellyfin-data
+        - name: radarr-config
+          persistentVolumeClaim:
+            claimName: radarr-config
+        - name: radarr-data
           persistentVolumeClaim:
             claimName: jellyfin-data

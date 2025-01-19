@@ -16,6 +16,27 @@ spec:
             service:
               name: arr-stack
               port:
-                number: 80
+                name: jellyfin
+  tls:
+  - secretName: homelab
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: arr-stack
+  namespace: homelab
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: sonarr.home.rizexor.com
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: arr-stack
+              port:
+                name: sonarr
   tls:
   - secretName: homelab

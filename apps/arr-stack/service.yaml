@@ -7,9 +7,12 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 80
+    - name: jellyfin
+      port: 8096
       targetPort: 8096
-      protocol: TCP
+    - name: radarr
+      port: 7878
+      targetPort: 7878
   selector:
     app: arr-stack
 
