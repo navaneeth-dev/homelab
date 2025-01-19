@@ -10,6 +10,11 @@ spec:
     chart: nfs-subdir-external-provisioner
     repoURL: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
     targetRevision: 4.0.18
+    helm:
+      valuesObject:
+        nfs:
+          server: 192.168.2.180
+          path: "/srv/nfs4"
   destination:
     server: "https://kubernetes.default.svc"
     namespace: nfs-provisioner
