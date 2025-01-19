@@ -82,3 +82,24 @@ spec:
                 name: prowlarr
   tls:
   - secretName: homelab
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sabnzbd-ingress
+  namespace: homelab
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: sabnzbd.home.rizexor.com
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: arr-stack
+              port:
+                name: sabnzbd
+  tls:
+  - secretName: homelab
