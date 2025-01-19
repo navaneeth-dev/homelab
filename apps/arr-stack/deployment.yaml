@@ -77,10 +77,10 @@ spec:
             - name: prowlarr-config
               mountPath: /config
       volumes:
-        - name: media
+        - name: data
           nfs:
             server: 192.168.2.180
-            path: "/srv/nfs4/media"
+            path: "/srv/nfs4/data"
         - name: jellyfin-config
           nfs:
             server: 192.168.2.180
