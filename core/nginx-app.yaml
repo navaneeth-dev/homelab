@@ -42,5 +42,3 @@ spec:
               name: argocd-server
               port:
                 name: http
-  tls:
-  - secretName: homelab
