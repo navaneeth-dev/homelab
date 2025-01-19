@@ -37,6 +37,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   volumeName: nfs-storage
+  storageClassName: ""
   resources:
     requests:
       storage: 700Gi
