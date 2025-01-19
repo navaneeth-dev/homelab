@@ -35,7 +35,7 @@ metadata:
   namespace: homelab
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   volumeName: nfs-storage
   storageClassName: ""
   resources:
