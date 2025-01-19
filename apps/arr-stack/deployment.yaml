@@ -77,7 +77,7 @@ spec:
             - name: prowlarr-config
               mountPath: /config
         - name: recyclarr
-          image: ghcr.io/hotio/recyclarr:7.4
+          image: ghcr.io/recyclarr/recyclarr:7.4
           securityContext:
             runAsUser: 1000
             runAsGroup: 1000
