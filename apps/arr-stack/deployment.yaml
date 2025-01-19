@@ -28,8 +28,8 @@ spec:
           volumeMounts:
             - name: jellyfin-config
               mountPath: /config
-            - name: media
-              mountPath: /media
+            - name: data
+              mountPath: /data
         - name: radarr
           image: ghcr.io/hotio/radarr:release-5.17.2.9580
           ports:
@@ -44,8 +44,8 @@ spec:
           volumeMounts:
             - name: radarr-config
               mountPath: /config
-            - name: media
-              mountPath: /media
+            - name: data
+              mountPath: /data
         - name: sonarr
           image: ghcr.io/hotio/sonarr:release-4.0.12.2823
           ports:
@@ -60,8 +60,8 @@ spec:
           volumeMounts:
             - name: sonarr-config
               mountPath: /config
-            - name: media
-              mountPath: /media
+            - name: data
+              mountPath: /data
         - name: prowlarr
           image: ghcr.io/hotio/prowlarr:release-1.29.2.4915
           ports:
