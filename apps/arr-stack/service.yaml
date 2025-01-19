@@ -13,6 +13,12 @@ spec:
     - name: radarr
       port: 7878
       targetPort: 7878
+    - name: sonarr
+      port: 8989
+      targetPort: 8989
+    - name: prowlarr
+      port: 9696
+      targetPort: 9696
   selector:
     app: arr-stack
 
