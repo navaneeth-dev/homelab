@@ -28,7 +28,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: sonarr.home.rizexor.com
+    - host: radarr.home.rizexor.com
       http:
         paths:
         - path: /
@@ -37,6 +37,6 @@ spec:
             service:
               name: arr-stack
               port:
-                name: sonarr
+                name: radarr
   tls:
   - secretName: homelab
