@@ -76,6 +76,17 @@ spec:
           volumeMounts:
             - name: prowlarr-config
               mountPath: /config
+        - name: recyclarr
+          image: ghcr.io/hotio/recyclarr:7.4
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+          env:
+            - name: TZ
+              value: "Asia/Kolkata"
+          volumeMounts:
+            - name: recyclarr-config
+              mountPath: /config
       volumes:
         - name: data
           nfs:
@@ -97,3 +108,7 @@ spec:
           nfs:
             server: 192.168.2.180
             path: "/srv/nfs4/config/prowlarr"
+        - name: recyclarr-config
+          nfs:
+            server: 192.168.2.180
+            path: "/srv/nfs4/config/recyclarr"
