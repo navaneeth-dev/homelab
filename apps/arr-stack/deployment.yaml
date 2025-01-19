@@ -46,16 +46,54 @@ spec:
               mountPath: /config
             - name: media
               mountPath: /media
+        - name: sonarr
+          image: ghcr.io/hotio/sonarr:release-4.0.12.2823
+          ports:
+            - containerPort: 8989
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Asia/Kolkata"
+          volumeMounts:
+            - name: sonarr-config
+              mountPath: /config
+            - name: media
+              mountPath: /media
+        - name: prowlarr
+          image: ghcr.io/hotio/sonarr:release-4.0.12.2823
+          ports:
+            - containerPort: 9696
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Asia/Kolkata"
+          volumeMounts:
+            - name: prowlarr-config
+              mountPath: /config
       volumes:
-        - name: jellyfin-config
-          nfs:
-            server: 192.168.2.180
-            path: "/srv/nfs4/config/jellyfin"
         - name: media
           nfs:
             server: 192.168.2.180
             path: "/srv/nfs4/media"
+        - name: jellyfin-config
+          nfs:
+            server: 192.168.2.180
+            path: "/srv/nfs4/config/jellyfin"
         - name: radarr-config
           nfs:
             server: 192.168.2.180
             path: "/srv/nfs4/config/radarr"
+        - name: sonarr-config
+          nfs:
+            server: 192.168.2.180
+            path: "/srv/nfs4/config/sonarr"
+        - name: prowlarr-config
+          nfs:
+            server: 192.168.2.180
+            path: "/srv/nfs4/config/prowlarr"
