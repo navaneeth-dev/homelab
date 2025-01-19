@@ -40,3 +40,45 @@ spec:
                 name: radarr
   tls:
   - secretName: homelab
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sonarr-ingress
+  namespace: homelab
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: sonarr.home.rizexor.com
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: arr-stack
+              port:
+                name: sonarr
+  tls:
+  - secretName: homelab
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prowlarr-ingress
+  namespace: homelab
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: prowlarr.home.rizexor.com
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: arr-stack
+              port:
+                name: prowlarr
+  tls:
+  - secretName: homelab
