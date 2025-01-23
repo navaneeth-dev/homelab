@@ -21,6 +21,16 @@ spec:
               user: file:///postgres-creds/username
               password: file:///postgres-creds/password
 
+        worker:
+          volumes:
+            - name: postgres-creds
+              secret:
+                secretName: authentik-app
+          volumeMounts:
+            - name: postgres-creds
+              mountPath: /postgres-creds
+              readOnly: true
+
         server:
           volumes:
             - name: postgres-creds
