@@ -12,22 +12,22 @@ spec:
     helm:
       valuesObject:
         authentik:
-            secret_key: "mb6xDFv3Pg7UKd2/C0W0EVe4TS/9dbtNh+V+nY/uBOoYJsryD96fvQM1bTIGilZgnKCG+Y8xGdxzcKQv"
-            error_reporting:
-                enabled: true
-            postgresql:
-              name: app
-              host: authentik-rw
-              user: file:///postgres-creds/username
-              password: file:///postgres-creds/password
-            email:
-              host: file:///smtp-creds/host
-              port: 587
-              username: file:///smtp-creds/username
-              password: file:///smtp-creds/password
-              use_tls: true
-              timeout: 30
-              from: file:///smtp-creds/from
+          secret_key: file:///authentik-secret-key/secret-key
+          error_reporting:
+              enabled: true
+          postgresql:
+            name: app
+            host: authentik-rw
+            user: file:///postgres-creds/username
+            password: file:///postgres-creds/password
+          email:
+            host: file:///smtp-creds/host
+            port: 587
+            username: file:///smtp-creds/username
+            password: file:///smtp-creds/password
+            use_tls: true
+            timeout: 30
+            from: file:///smtp-creds/from
 
         worker:
           volumes:
@@ -37,12 +37,18 @@ spec:
             - name: smtp-creds
               secret:
                 secretName: smtp-creds
+            - name: authentik-secret-key
+              secret:
+                secretName: authentik-secret-key
           volumeMounts:
             - name: postgres-creds
               mountPath: /postgres-creds
               readOnly: true
             - name: smtp-creds
               mountPath: /smtp-creds
+              readOnly: true
+            - name: authentik-secret-key
+              mountPath: /authentik-secret-key
               readOnly: true
 
         server:
@@ -53,12 +59,18 @@ spec:
             - name: smtp-creds
               secret:
                 secretName: smtp-creds
+            - name: authentik-secret-key
+              secret:
+                secretName: authentik-secret-key
           volumeMounts:
             - name: postgres-creds
               mountPath: /postgres-creds
               readOnly: true
             - name: smtp-creds
               mountPath: /smtp-creds
+              readOnly: true
+            - name: authentik-secret-key
+              mountPath: /authentik-secret-key
               readOnly: true
           ingress:
               ingressClassName: nginx
@@ -112,3 +124,21 @@ spec:
     - secretKey: from
       remoteRef:
         key: SMTP_FROM
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: authentik-secret-key
+  namespace: authentik
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: infisical
+
+  target:
+    name: authentik-secret-key
+
+  data:
+    - secretKey: secret-key
+      remoteRef:
+        key: AUTHENTIK_SECRET_KEY
