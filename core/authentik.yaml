@@ -24,7 +24,7 @@ spec:
           volumes:
             - name: postgres-creds
               secret:
-                secretName: authentik-postgres-credentials
+                secretName: authentik-app
           volumeMounts:
             - name: postgres-creds
               mountPath: /postgres-creds
