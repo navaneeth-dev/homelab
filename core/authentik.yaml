@@ -13,24 +13,28 @@ spec:
       valuesObject:
         authentik:
             secret_key: "mb6xDFv3Pg7UKd2/C0W0EVe4TS/9dbtNh+V+nY/uBOoYJsryD96fvQM1bTIGilZgnKCG+Y8xGdxzcKQv"
-            # This sends anonymous usage-data, stack traces on errors and
-            # performance data to sentry.io, and is fully opt-in
             error_reporting:
                 enabled: true
             postgresql:
-                password: "Txfvp4pve6nhbWEAkSvjsIc7xc88vIRCaVTcDVCnuB5YFPUNNT"
+              host: authentik-rw
+              user: file:///postgres-creds/username
+              password: file:///postgres-creds/password
 
         server:
-            ingress:
-                ingressClassName: nginx
-                enabled: true
-                hosts:
-                    - authentik.home.rizexor.com
+          volumes:
+            - name: postgres-creds
+              secret:
+                secretName: authentik-postgres-credentials
+          volumeMounts:
+            - name: postgres-creds
+              mountPath: /postgres-creds
+              readOnly: true
+          ingress:
+              ingressClassName: nginx
+              enabled: true
+              hosts:
+                  - authentik.home.rizexor.com
 
-        postgresql:
-            enabled: true
-            auth:
-                password: "Txfvp4pve6nhbWEAkSvjsIc7xc88vIRCaVTcDVCnuB5YFPUNNT"
         redis:
             enabled: true
 
@@ -45,6 +49,7 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: authentik
+  namespace: authentik
 spec:
   instances: 1
   storage:
