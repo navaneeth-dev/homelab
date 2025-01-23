@@ -20,15 +20,29 @@ spec:
               host: authentik-rw
               user: file:///postgres-creds/username
               password: file:///postgres-creds/password
+            email:
+              host: file:///smtp-creds/host
+              port: 587
+              username: file:///smtp-creds/username
+              password: file:///smtp-creds/password
+              use_tls: true
+              timeout: 30
+              from: file:///smtp-creds/from
 
         worker:
           volumes:
             - name: postgres-creds
               secret:
                 secretName: authentik-app
+            - name: smtp-creds
+              secret:
+                secretName: smtp-creds
           volumeMounts:
             - name: postgres-creds
               mountPath: /postgres-creds
+              readOnly: true
+            - name: smtp-creds
+              mountPath: /smtp-creds
               readOnly: true
 
         server:
@@ -36,9 +50,15 @@ spec:
             - name: postgres-creds
               secret:
                 secretName: authentik-app
+            - name: smtp-creds
+              secret:
+                secretName: smtp-creds
           volumeMounts:
             - name: postgres-creds
               mountPath: /postgres-creds
+              readOnly: true
+            - name: smtp-creds
+              mountPath: /smtp-creds
               readOnly: true
           ingress:
               ingressClassName: nginx
@@ -65,3 +85,30 @@ spec:
   instances: 1
   storage:
     size: 3Gi
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: smtp-creds
+  namespace: authentik
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: infisical
+
+  target:
+    name: smtp-creds
+
+  data:
+    - secretKey: host
+      remoteRef:
+        key: SMTP_HOST
+    - secretKey: username
+      remoteRef:
+        key: SMTP_USERNAME
+    - secretKey: password
+      remoteRef:
+        key: SMTP_PASSWORD
+    - secretKey: from
+      remoteRef:
+        key: SMTP_FROM
