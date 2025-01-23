@@ -40,3 +40,12 @@ spec:
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: authentik
+spec:
+  instances: 1
+  storage:
+    size: 3Gi
