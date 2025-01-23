@@ -16,6 +16,7 @@ spec:
             error_reporting:
                 enabled: true
             postgresql:
+              name: app
               host: authentik-rw
               user: file:///postgres-creds/username
               password: file:///postgres-creds/password
