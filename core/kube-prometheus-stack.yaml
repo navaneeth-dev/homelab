@@ -9,9 +9,19 @@ spec:
     chart: kube-prometheus-stack
     repoURL: https://prometheus-community.github.io/helm-charts
     targetRevision: 68.3.3
+    helm:
+      valuesObject:
+        grafana:
+          ingress:
+            enabled: true
+            hosts:
+            - grafana.home.rizexor.com
+            tls:
+            - secretName: homelab
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: kube-prometheus-stack
+    namespace: homelab
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
+    - ServerSideApply=true
