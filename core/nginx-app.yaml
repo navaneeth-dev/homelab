@@ -12,6 +12,8 @@ spec:
     helm:
       valuesObject:
         controller:
+          ingressClassResource:
+            default: true
           extraArgs:
             default-ssl-certificate: "homelab/homelab"
   destination:
