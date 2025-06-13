@@ -1,7 +1,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as docker from "@pulumi/docker";
 
-const syncthing = new docker.RemoteImage("syncthing", { name: "lscr.io/linuxserver/syncthing@sha256:9026ba9209fa561b4d68ac38659f95620778e2d4336bd1665de25baa507a36f3" });
+const syncthing = new docker.RemoteImage("syncthing", { name: "lscr.io/linuxserver/syncthing@sha256:9026ba9209fa561b4d68ac38659f95620778e2d4336bd1665de25baa507a36f3" }); // renovate
 const syncthingContainer = new docker.Container("syncthing", {
   image: syncthing.imageId,
   name: "syncthing",
