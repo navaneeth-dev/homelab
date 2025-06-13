@@ -7,6 +7,16 @@
   "schedule": [
     "* 10 * * 0,5,6"
   ],
+  customManagers: [
+    {
+      customType: 'regex',
+      managerFilePatterns: ['Pulumi.yaml'],
+      matchStrings: [
+        "name: \"(?<depName>.*?):(?<currentValue>.*?)\" }\); #\s*renovate\n"
+      ],
+      datasourceTemplate: 'docker',
+    },
+  ],
   "kubernetes": {
     "managerFilePatterns": [
       "/\\.yaml$/"
