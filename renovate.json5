@@ -10,11 +10,11 @@
   customManagers: [
     {
       customType: 'regex',
-      managerFilePatterns: ['Pulumi.yaml'],
+      managerFilePatterns: ['/^Pulumi.yaml$/'],
       matchStrings: [
-        '{ name: "(?<depName>.*?):(?<currentValue>.*?)" }\\); \\/\\/ renovate\\n'
+        '{ name: "(?<depName>)@(?<currentValue>.*?)" }\\); \\/\\/ renovate\\n'
       ],
-      datasourceTemplate: 'docker',
+      datasource: 'docker',
     },
   ],
   "kubernetes": {
