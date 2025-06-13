@@ -14,7 +14,7 @@
       matchStrings: [
         '{ name: "(?<depName>)@(?<currentValue>.*?)" }\\); \\/\\/ renovate\\n'
       ],
-      datasource: 'docker',
+      datasourceTemplate: 'docker',
     },
   ],
   "kubernetes": {
