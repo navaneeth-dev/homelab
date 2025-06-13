@@ -12,7 +12,7 @@
       customType: 'regex',
       managerFilePatterns: ['/(^|/)Pulumi.yaml$/'],
       matchStrings: [
-        '{ name: "(?<depName>.*)@(?<currentValue>.*?)" }\\); \\\/\\\/ renovate\\n'
+        '{ name: \"(?<depName>.*)@(?<currentValue>.*?)\" }\\);\\s*\\/\\/ renovate'
       ],
       datasourceTemplate: 'docker',
     },
