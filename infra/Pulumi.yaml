@@ -1,0 +1,18 @@
+name: homelab
+description: Homelab
+runtime:
+  name: nodejs
+  options:
+    packagemanager: pnpm
+config:
+  docker:host:
+    value: ssh://ubuntu@192.168.2.180:22
+  docker:sshOpts:
+    value:
+    - -o
+    - StrictHostKeyChecking=no
+    - -o
+    - UserKnownHostsFile=/dev/null
+  pulumi:tags:
+    value:
+      pulumi:template: typescript
