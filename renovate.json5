@@ -10,7 +10,7 @@
   customManagers: [
     {
       customType: 'regex',
-      managerFilePatterns: ['Pulumi.yaml'],
+      managerFilePatterns: ['(^|\\/)Pulumi.yaml$'],
       matchStrings: [
         '{ name: "(?<depName>)@(?<currentValue>.*?)" }\\); \\/\\/ renovate\\n'
       ],
