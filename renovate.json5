@@ -7,13 +7,6 @@
   "schedule": [
     "* 10 * * 0,5,6"
   ],
-  "packageRules": [
-    {
-      "matchDatasources": ["kubernetes"],
-      "matchPackageNames": ["/^ghcr.io/hotio//"],
-      "versionCompatibility": "^(?<compatibility>[^-]+)-v?(?<version>\\d+\\.\\d+\\.\\d+)$",
-    },
-  ],
   "kubernetes": {
     "managerFilePatterns": [
       "/\\.yaml$/"
