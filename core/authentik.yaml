@@ -98,7 +98,7 @@ spec:
   storage:
     size: 3Gi
 ---
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: smtp-creds
@@ -125,7 +125,7 @@ spec:
       remoteRef:
         key: SMTP_FROM
 ---
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: authentik-secret-key
