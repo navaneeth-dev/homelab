@@ -65,7 +65,7 @@ spec:
             - name: data
               mountPath: /data
         - name: sabnzbd
-          image: ghcr.io/hotio/sabnzbd@sha256:7c291fcb9e70c0b8ab0394802955f6df37040bf0d53dd4a16099d9cda899e7db
+          image: ghcr.io/hotio/sabnzbd@sha256:aff501a8144b64f8bd318768e37987d7d6c02c41b95917519343eb960c41ae0a
           ports:
             - containerPort: 8080
           env:
