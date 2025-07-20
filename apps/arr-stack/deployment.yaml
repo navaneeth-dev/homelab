@@ -33,7 +33,7 @@ spec:
             - name: data
               mountPath: /data
         - name: radarr
-          image: ghcr.io/hotio/radarr@sha256:7f583b35dca64c1bffd27a39d61d4c3143633a29070260f76f1e5939006780d8
+          image: ghcr.io/hotio/radarr@sha256:79c751100d1398305f05290068cef7367dc8cf1c3d7642db1da70a10da9dfa6e
           ports:
             - containerPort: 7878
           env:
