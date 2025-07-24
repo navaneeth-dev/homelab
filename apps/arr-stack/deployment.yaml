@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: jellyfin
-          image: ghcr.io/hotio/jellyfin@sha256:cd32bc1491d128a4b1bf4a5de66cfa5f2c687c3c4ea6ee2f0d9c2f95114cd5d6
+          image: ghcr.io/hotio/jellyfin@sha256:4480c8357704554f2ec0f343ea219884a34645cc32a5dc90ae5829bfb056a19e
           ports:
             - containerPort: 8096
           env:
