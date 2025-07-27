@@ -83,7 +83,7 @@ spec:
             - name: data
               mountPath: /data
         - name: prowlarr
-          image: ghcr.io/hotio/prowlarr@sha256:0fc62cbb850542dc235581986e9f64b774f08d3dfbe29f96a5c1177819f1b8a3
+          image: ghcr.io/hotio/prowlarr@sha256:37c1e95c5015db2b22fa0beafc53c3bf60d57c6cf8e27b7626f067e8a2f09941
           ports:
             - containerPort: 9696
           env:
